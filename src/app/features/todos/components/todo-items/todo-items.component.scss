@@ -64,6 +64,7 @@
 }
 
 .popup-menu {
+  width: fit-content;
   display: none;
   position: absolute;
   top: 0;
@@ -193,6 +194,7 @@ pre {
   border: solid;
   border-color: #24292F;
   border-width: 0.0625rem;
+  width: fit-content;
 }
 
 .button:hover {

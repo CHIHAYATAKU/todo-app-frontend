@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TodoService } from '../../../../services/todo.service';
 import { ToDo, ToDoState } from '../../../../models/todo.model';
 import { categoryColorMap, ToDoCategory } from '../../../../models/todo-category.model';
@@ -39,6 +39,14 @@ loadCategories(): void {
 
   togglePopup(todoId: number): void {
     this.activeTodoId = this.activeTodoId === todoId ? null : todoId;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: MouseEvent): void {
+    const clickedInside = (event.target as HTMLElement).closest('.todo-ele');
+    if (!clickedInside) {
+      this.activeTodoId = null; // ポップアップを閉じる
+    }
   }
 
   getCategoryColor(category: ToDoCategory): string {

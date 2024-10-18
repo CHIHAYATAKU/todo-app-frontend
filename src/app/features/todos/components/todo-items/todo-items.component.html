@@ -7,7 +7,7 @@
   </div>
 
   <div class="todo-list">
-    <div class="todo-ele" *ngFor="let todo of todos">
+    <div class="todo-ele" *ngFor="let todo of todos" [ngClass]="{'active': activeTodoId === todo.id}">
       <div class="todo-item" [attr.id]="'todo-' + todo.id" (click)="todo.id !== undefined && togglePopup(todo.id)">
         <div class="todo-content">
           <div class="todo-title">{{ todo.title }}</div>
