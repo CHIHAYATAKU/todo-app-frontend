@@ -1,0 +1,41 @@
+<div class="todo-div">
+  <div class="legend">
+    <div *ngFor="let category of categories">
+      <span [ngStyle]="{'background-color': getCategoryColor(category)}"></span>
+      {{ category.name }}
+    </div>
+  </div>
+
+  <div class="todo-list">
+    <div class="todo-ele" *ngFor="let todo of todos">
+      <div class="todo-item" [attr.id]="'todo-' + todo.id" (click)="todo.id !== undefined && togglePopup(todo.id)">
+        <div class="todo-content">
+          <div class="todo-title">{{ todo.title }}</div>
+          <div class="todo-body">
+            <pre>{{ todo.body }}</pre>
+          </div>
+          <div class="todo-dates">
+            <div>作成日: {{ todo.createdAt | date: 'yyyy-MM-dd HH:mm' }}</div>
+            <div>更新日: {{ todo.updatedAt | date: 'yyyy-MM-dd HH:mm' }}</div>
+          </div>
+        </div>
+        <div class="todo-status-category">
+          <div class="todo-status">
+            {{ getStateString(todo.state) }}
+          </div>
+          <div class="todo-category">
+            <span class="category-color" [ngStyle]="{'background-color': todo.category ? getCategoryColor(todo.category) : 'white'}"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-menu" *ngIf="activeTodoId === todo.id">
+        <button class="button">削除</button>
+        <a class="button">編集</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 追加フォームへのボタン -->
+  <a class="add-todo-button" id="addTodoButton">＋</a>
+</div>

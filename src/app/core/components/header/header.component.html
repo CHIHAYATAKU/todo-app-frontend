@@ -1,0 +1,10 @@
+<header class="header">
+  <div class="header__content">
+    <span class="header__logo">To-do App</span>
+    <nav>
+      <a [id]="isHomePage() ? 'home' : null" routerLink="/">Home</a>
+      <a [id]="isTodoPage() ? 'todo' : null" routerLink="/todos">Todo一覧</a>
+      <a [id]="isCategoryPage() ? 'category' : null" routerLink="/categories">カテゴリー一覧</a>
+    </nav>
+  </div>
+</header>
